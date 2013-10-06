@@ -30,5 +30,15 @@ Todos los comandos a continuacion hagalos desde una terminal
 
     bin/buildout -vvv
 
+4.- Modificar la seccion databases del archivo project/development.py con los datos de su servidor mysql
 
-
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', # Motor
+            'NAME': 'sunat' ,                      # Nombre de la base de datos
+            'USER': 'root',                      # Usuario
+            'PASSWORD': '',                  # Contraseña
+            'HOST': '',                      # Host, se asume localhost por default
+            'PORT': '',                      # Puerto, se asume el puerto por default segun el motor
+        }
+    }
