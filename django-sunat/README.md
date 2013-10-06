@@ -43,6 +43,23 @@ Todos los comandos a continuacion hagalos desde una terminal
         }
     }
 
-5.- Sincronizar a la base de datos
+5.- Sincronizar a la base de datos, se esta adjuntando un backup en docs, si lo levanta ovbie este paso
+    caso contrario al ejecutar complete todos los datos que se le pide desde el prompt
 
     bin/django syncdb
+
+6.- Colleccionar los archivos staticos
+
+    bin/django collectstatic
+
+7.- Si usa pyCharm puede ejecutar el servidor de desarrollo desde alli sino puede usar la consola
+
+    bin/django runserver --nostatic
+
+8.- Para acceder al sitio administrativo
+
+    http://127.0.0.1:8000/admin
+
+9.- Para acceder a la consulta online
+
+    http://127.0.0.1:8000/

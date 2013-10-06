@@ -4,13 +4,14 @@ __author__ = 'herald olivares'
 #EN ESTE ARCHIVO SE ESPECIFICA LO QUE VENDRIA A SER LA CAPA DE PERSISTENCIA
 #UNA ENTIDAD O MODELO DEBE SER UNA SUBCLASE DE Model
 #AUTOMATICAMENTE SE SINCRONIZARAN A LA BD AL EJECUTAR EL COMANDO syncdb
-from django.db import  models
+from django.db import models
 from django.utils.translation import ugettext as _
 
 PERSON_TYPE = (
     (1, _('Legal Person')),
     (2, _('Juridic Person')),
 )
+
 
 class Person(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,6 +28,7 @@ class Person(models.Model):
     def __unicode__(self):
         return self.ruc
 
+
 class Concept(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name=_("Name"), max_length=150, db_index=True)
@@ -38,6 +40,7 @@ class Concept(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Debt(models.Model):
     id = models.AutoField(primary_key=True)
     concept = models.ForeignKey(Concept, verbose_name=_("Concept"))
@@ -48,3 +51,11 @@ class Debt(models.Model):
     tax_code = models.CharField(verbose_name=_("Tax Code"), max_length=10,
                                 null=True, blank=True)
     amount = models.DecimalField(verbose_name=_("Amount"), max_digits=14, decimal_places=2)
+
+    class Meta:
+        verbose_name = _("Debt")
+        verbose_name_plural = _("Debts")
+
+    def __unicode__(self):
+        return 'Multa por %s pertenciente a %s en %s equivalente %s' % (
+            self.concept, self.person, self.period, self.amount)
