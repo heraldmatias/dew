@@ -1,0 +1,8 @@
+parameters:
+#    sunat.example.class: Upc\Sunat\SunatBundle\Example
+
+services:
+    sunat.form.type.concept:          
+        class: Upc\Sunat\SunatBundle\Form\Type\ConceptType
+        tags:
+            - { name: form.type, alias: concept }

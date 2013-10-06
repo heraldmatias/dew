@@ -1,0 +1,9 @@
+_admin:
+    resource: "@SunatBundle/Controller/SecuredController.php"
+    type:     annotation
+    prefix:   /admin
+    
+_concept:
+    resource: "@SunatBundle/Controller/ConceptController.php"
+    type:     annotation
+    prefix:   /admin/concept
