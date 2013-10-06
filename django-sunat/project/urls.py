@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
 #from website.views import InternalErrorView
@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     #url(r'^admin/filebrowser/', include(site.urls)),
     (r'^grappelli/', include('grappelli.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^', include('upc.sunat.urls'))
 )
 
 handler500 = 'upc.sunat.views.internal_error_view'
