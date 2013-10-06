@@ -42,3 +42,7 @@ Todos los comandos a continuacion hagalos desde una terminal
             'PORT': '',                      # Puerto, se asume el puerto por default segun el motor
         }
     }
+
+5.- Sincronizar a la base de datos
+
+    bin/django syncdb

@@ -1,6 +1,9 @@
 __author__ = 'herald olivares'
 # -*- coding: utf-8 -*-
-
+#TODO
+#EN ESTE ARCHIVO SE ESPECIFICA LO QUE VENDRIA A SER LA CAPA DE PERSISTENCIA
+#UNA ENTIDAD O MODELO DEBE SER UNA SUBCLASE DE Model
+#AUTOMATICAMENTE SE SINCRONIZARAN A LA BD AL EJECUTAR EL COMANDO syncdb
 from django.db import  models
 from django.utils.translation import ugettext as _
 
