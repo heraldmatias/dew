@@ -15,5 +15,5 @@ DATABASES = {
 #TEST_NAME = 'test_sunat'
 import sys
 
-if 'test' or 'true' in sys.argv:
+if 'test' in sys.argv:
     DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3','NAME': 'testdb'}
