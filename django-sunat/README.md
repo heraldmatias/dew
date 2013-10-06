@@ -2,6 +2,7 @@ Django - Sunat
 ==============
 
 1.- Requerimientos
+
     Python 2.6 - 2.7
     Recomendación python 2.7.5
     aqui el link de descarga, no olvide elegir el que este acorde a la arquitectura de su sistema operativo
