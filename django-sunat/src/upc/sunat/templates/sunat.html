@@ -21,10 +21,11 @@
                             <div class="span2">
                                 <input type="submit" value="Consultar">
                             </div>
-
+                            {% if page_obj|length > 0 %}
                             <div class="span2 offset3">
                             Page {{ page_obj.number }} of {{ paginator.num_pages }}
                             </div>
+                            {% endif %}
                         </div>
                         <br>
 
@@ -60,6 +61,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {% if page_obj|length > 0 %}
                         <div class="pagination pagination-centered">
                             <ul>
                                 {% if page_obj.has_previous %}
@@ -72,6 +74,7 @@
                                 {% endif %}
                             </ul>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
