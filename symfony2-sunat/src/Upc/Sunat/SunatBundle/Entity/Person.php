@@ -41,7 +41,7 @@ class Person implements \Serializable {
     private $ruc;
     
     /**
-     * @ORM\Column(name="phonr", type="string", length=10, nullable=true)
+     * @ORM\Column(name="phone", type="string", length=10, nullable=true)
      */
     private $phone;
     
