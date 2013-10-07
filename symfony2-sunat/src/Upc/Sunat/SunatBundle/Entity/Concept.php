@@ -75,4 +75,8 @@ class Concept implements \Serializable {
     {
         return $this->name;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
 }

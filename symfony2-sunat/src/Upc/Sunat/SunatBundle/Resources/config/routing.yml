@@ -7,3 +7,13 @@ _concept:
     resource: "@SunatBundle/Controller/ConceptController.php"
     type:     annotation
     prefix:   /admin/concept
+    
+_person:
+    resource: "@SunatBundle/Controller/PersonController.php"
+    type:     annotation
+    prefix:   /admin/person
+    
+_debt:
+    resource: "@SunatBundle/Controller/DebtController.php"
+    type:     annotation
+    prefix:   /admin/debt

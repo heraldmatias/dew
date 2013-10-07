@@ -6,21 +6,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Upc\Sunat\SunatBundle\Entity\Concept;
+use Upc\Sunat\SunatBundle\Entity\Person;
+
 /**
- * Description of ConceptController
+ * Description of PersonController
  *
  * @author herald olivares
  */
-class ConceptController extends Controller {
+class PersonController extends Controller {
     
     /**
-     * @Route("/", name="concept_list")
+     * @Route("/", name="person_list")
      * @Template("")
      */
     public function listAction(){
         $em = $this->getDoctrine()
-                ->getRepository('SunatBundle:Concept');
+                ->getRepository('SunatBundle:Person');
         $query = $em->findAll();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -32,12 +33,12 @@ class ConceptController extends Controller {
     }
     
      /**
-     * @Route("/add", name="concept_add")
+     * @Route("/add", name="person_add")
      * @Template("")
      */
     public function newAction(Request $request) {
-        $object = new Concept();
-        $form = $this->createForm('concept', $object);
+        $object = new Person();
+        $form = $this->createForm('person', $object);
         $form->handleRequest($request);
 
         if ($form->isValid()) {            
@@ -45,10 +46,10 @@ class ConceptController extends Controller {
             $em->persist($object);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
-            'concept',
+            'person',
             'Registro grabado satisfactoriamente'
             );
-            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'concept_add' : 'concept_list';
+            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'person_add' : 'person_list';
             return $this->redirect($this->generateUrl($nextAction));
         }
         return array(
@@ -56,15 +57,15 @@ class ConceptController extends Controller {
         );
     }
     /**
-     * @Route("/{pk}", name="concept_edit")
+     * @Route("/{pk}", name="person_edit")
      * @Template("")
      */
     public function editAction(Request $request, $pk) {
-        $object = $this->getDoctrine()->getRepository('SunatBundle:Concept')->find($pk);
+        $object = $this->getDoctrine()->getRepository('SunatBundle:Person')->find($pk);
         if (!$object) {
-            $this->createNotFoundException('No existe el concepto');
+            $this->createNotFoundException('No existe la persona');
         }
-        $form = $this->createForm('concept', $object);
+        $form = $this->createForm('person', $object);
         $form->handleRequest($request);
 
         if ($form->isValid()) {            
@@ -72,10 +73,10 @@ class ConceptController extends Controller {
             $em->persist($object);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
-            'concept',
+            'person',
             'Registro modificado satisfactoriamente'
             );
-            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'concept_add' : 'concept_list';
+            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'person_add' : 'person_list';
             return $this->redirect($this->generateUrl($nextAction));
         }
         return array(
@@ -84,22 +85,22 @@ class ConceptController extends Controller {
     }
     
     /**
-     * @Route("/delete/{pk}", name="concept_delete")
+     * @Route("/delete/{pk}", name="person_delete")
      * @Template("")
      */
     public function deleteAction($pk) {
-        $object = $this->getDoctrine()->getRepository('SunatBundle:Concept')->find($pk);        
+        $object = $this->getDoctrine()->getRepository('SunatBundle:Person')->find($pk);        
         if (!$object) {
-            $this->createNotFoundException('No existe el concepto');
+            $this->createNotFoundException('No existe la persona');
         }
         $em = $this->getDoctrine()->getManager();
         $em->remove($object);
         $em->flush();
         $this->get('session')->getFlashBag()->add(
-        'concept',
+        'person',
         'Registro eliminado satisfactoriamente'
         );
-        $nextAction = 'concept_list';
+        $nextAction = 'person_list';
         return $this->redirect($this->generateUrl($nextAction));
     }
     

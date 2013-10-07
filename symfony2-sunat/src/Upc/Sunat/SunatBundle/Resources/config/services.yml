@@ -6,3 +6,11 @@ services:
         class: Upc\Sunat\SunatBundle\Form\Type\ConceptType
         tags:
             - { name: form.type, alias: concept }
+    sunat.form.type.person:
+        class: Upc\Sunat\SunatBundle\Form\Type\PersonType
+        tags:
+            - { name: form.type, alias: person }
+    sunat.form.type.debt:
+        class: Upc\Sunat\SunatBundle\Form\Type\DebtType
+        tags:
+            - { name: form.type, alias: debt }

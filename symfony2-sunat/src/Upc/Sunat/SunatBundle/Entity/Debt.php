@@ -38,22 +38,22 @@ class Debt implements \Serializable {
     private $person;
     
     /**
-     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     * @ORM\Column(name="period", type="string", length=50, nullable=false)
      */
     private $period;
     
     /**
      * @ORM\Column(name="resolution_number", type="string", length=10, nullable=true)
      */
-    private $resolution_number;
+    private $resolutionNumber;
     
     /**
      * @ORM\Column(name="tax_code", type="string", length=10, nullable=true)
      */
-    private $tax_code;
+    private $taxCode;
     
     /**
-     * @ORM\Column(name="amount", type="decimal", nullable=false)
+     * @ORM\Column(name="amount", type="decimal", nullable=false, precision=14, scale=4)
      */
     private $amount;
     
@@ -110,7 +110,7 @@ class Debt implements \Serializable {
      */
     public function setResolutionNumber($resolutionNumber)
     {
-        $this->resolution_number = $resolutionNumber;
+        $this->resolutionNumber = $resolutionNumber;
     
         return $this;
     }
@@ -122,7 +122,7 @@ class Debt implements \Serializable {
      */
     public function getResolutionNumber()
     {
-        return $this->resolution_number;
+        return $this->resolutionNumber;
     }
 
     /**
@@ -133,7 +133,7 @@ class Debt implements \Serializable {
      */
     public function setTaxCode($taxCode)
     {
-        $this->tax_code = $taxCode;
+        $this->taxCode = $taxCode;
     
         return $this;
     }
@@ -145,7 +145,7 @@ class Debt implements \Serializable {
      */
     public function getTaxCode()
     {
-        return $this->tax_code;
+        return $this->taxCode;
     }
 
     /**

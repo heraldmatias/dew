@@ -17,6 +17,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Person implements \Serializable {
     
+    public static $TYPES = array(
+        1 => 'Persona Juridica',
+        2 => 'Persona Natural'
+    );
+
     /**
      /**
      * @ORM\Column(type="integer")
@@ -45,6 +50,9 @@ class Person implements \Serializable {
      */
     private $type;
     
+    public function displaytype(){
+        return Person::$TYPES[$this->type];
+    }
     
     public function serialize() {
         return serialize(array(
@@ -158,5 +166,9 @@ class Person implements \Serializable {
     public function getType()
     {
         return $this->type;
+    }
+    
+    public function __toString() {
+        return $this->getRuc();
     }
 }

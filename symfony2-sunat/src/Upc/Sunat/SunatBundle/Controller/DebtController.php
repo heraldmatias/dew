@@ -6,21 +6,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Upc\Sunat\SunatBundle\Entity\Concept;
+use Upc\Sunat\SunatBundle\Entity\Debt;
+
 /**
- * Description of ConceptController
+ * Description of DebtController
  *
  * @author herald olivares
  */
-class ConceptController extends Controller {
+class DebtController extends Controller {
     
     /**
-     * @Route("/", name="concept_list")
+     * @Route("/", name="debt_list")
      * @Template("")
      */
     public function listAction(){
         $em = $this->getDoctrine()
-                ->getRepository('SunatBundle:Concept');
+                ->getRepository('SunatBundle:Debt');
         $query = $em->findAll();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -32,12 +33,12 @@ class ConceptController extends Controller {
     }
     
      /**
-     * @Route("/add", name="concept_add")
+     * @Route("/add", name="debt_add")
      * @Template("")
      */
     public function newAction(Request $request) {
-        $object = new Concept();
-        $form = $this->createForm('concept', $object);
+        $object = new Debt();
+        $form = $this->createForm('debt', $object);
         $form->handleRequest($request);
 
         if ($form->isValid()) {            
@@ -45,10 +46,10 @@ class ConceptController extends Controller {
             $em->persist($object);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
-            'concept',
+            'debt',
             'Registro grabado satisfactoriamente'
             );
-            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'concept_add' : 'concept_list';
+            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'debt_add' : 'debt_list';
             return $this->redirect($this->generateUrl($nextAction));
         }
         return array(
@@ -56,26 +57,25 @@ class ConceptController extends Controller {
         );
     }
     /**
-     * @Route("/{pk}", name="concept_edit")
+     * @Route("/{pk}", name="debt_edit")
      * @Template("")
      */
     public function editAction(Request $request, $pk) {
-        $object = $this->getDoctrine()->getRepository('SunatBundle:Concept')->find($pk);
+        $object = $this->getDoctrine()->getRepository('SunatBundle:Debt')->find($pk);
         if (!$object) {
-            $this->createNotFoundException('No existe el concepto');
+            $this->createNotFoundException('No existe la multa');
         }
-        $form = $this->createForm('concept', $object);
+        $form = $this->createForm('debt', $object);
         $form->handleRequest($request);
-
         if ($form->isValid()) {            
             $em = $this->getDoctrine()->getManager();
             $em->persist($object);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
-            'concept',
+            'debt',
             'Registro modificado satisfactoriamente'
             );
-            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'concept_add' : 'concept_list';
+            $nextAction = $form->get('saveAndAdd')->isClicked() ? 'debt_add' : 'debt_list';
             return $this->redirect($this->generateUrl($nextAction));
         }
         return array(
@@ -84,22 +84,22 @@ class ConceptController extends Controller {
     }
     
     /**
-     * @Route("/delete/{pk}", name="concept_delete")
+     * @Route("/delete/{pk}", name="debt_delete")
      * @Template("")
      */
     public function deleteAction($pk) {
-        $object = $this->getDoctrine()->getRepository('SunatBundle:Concept')->find($pk);        
+        $object = $this->getDoctrine()->getRepository('SunatBundle:Debt')->find($pk);        
         if (!$object) {
-            $this->createNotFoundException('No existe el concepto');
+            $this->createNotFoundException('No existe la multa');
         }
         $em = $this->getDoctrine()->getManager();
         $em->remove($object);
         $em->flush();
         $this->get('session')->getFlashBag()->add(
-        'concept',
+        'debt',
         'Registro eliminado satisfactoriamente'
         );
-        $nextAction = 'concept_list';
+        $nextAction = 'debt_list';
         return $this->redirect($this->generateUrl($nextAction));
     }
     

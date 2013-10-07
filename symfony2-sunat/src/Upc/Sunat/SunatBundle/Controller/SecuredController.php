@@ -10,7 +10,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Upc\Sunat\SunatBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
-
+/**
+ * Description of ConceptController
+ *
+ * @author herald olivares
+ */
 class SecuredController extends Controller
 {    
     
