@@ -14,3 +14,7 @@ services:
         class: Upc\Sunat\SunatBundle\Form\Type\DebtType
         tags:
             - { name: form.type, alias: debt }
+    sunat.form.type.debt_search:
+        class: Upc\Sunat\SunatBundle\Form\Type\DebtSearchType
+        tags:
+            - { name: form.type, alias: debt_search }

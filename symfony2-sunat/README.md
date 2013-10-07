@@ -19,3 +19,20 @@ desde las opciones en netbeans
 
     php composer.phar install
 
+
+NOTA: Guia para instalar PHPUnit
+    primero necesitará
+    http://pear.php.net/go-pear.phar
+    
+    En el directorio de pear ejecutar lo siguiente
+
+    pear channel-discover pear.phpunit.de
+    pear channel-discover pear.symfony.com
+    
+    luego instalamos PHPUnit
+    
+    pear install phpunit/PHPUnit
+    
+    Aqui hay una guía
+    http://www.oreillynet.com/pub/a/php/excerpts/learning-php-mysql-javascript/using-pear-and-phpunit.html 
+

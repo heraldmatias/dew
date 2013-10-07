@@ -17,3 +17,8 @@ _debt:
     resource: "@SunatBundle/Controller/DebtController.php"
     type:     annotation
     prefix:   /admin/debt
+    
+_home:
+    resource: "@SunatBundle/Controller/HomeController.php"
+    type:     annotation
+    prefix:   /
