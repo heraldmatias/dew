@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import edu.upc.sunat.entity.Concept;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 /**
@@ -25,7 +26,12 @@ public class ConceptDaoImpl extends JdbcDaoSupport implements DaoInterface<Conce
     
     @Override
     public List<Concept> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return getJdbcTemplate().query("select * from sunat_concept ", 
+                    new BeanPropertyRowMapper<Concept>(Concept.class));
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
@@ -45,17 +51,25 @@ public class ConceptDaoImpl extends JdbcDaoSupport implements DaoInterface<Conce
 
     @Override
     public void elimnar(Concept object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getJdbcTemplate().update("delete from sunat_concept where id = ?",
+                object.getId());
     }
 
     @Override
     public void actualizar(Concept object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getJdbcTemplate().update("update sunat_concept set name = ? "
+                + "where id = ?", object.getName(), object.getId());
     }
 
     @Override
     public Concept buscar(Integer pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            return getJdbcTemplate().queryForObject(
+                    "select * from sunat_concept where id=?",
+                    new BeanPropertyRowMapper<Concept>(Concept.class), pk);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
